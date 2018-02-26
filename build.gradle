@@ -1,0 +1,46 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+
+sourceCompatibility = 1.9
+targetCompatibility = 1.9
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.ilasAtGit.storage.StorageMain'
+    }
+    baseName = 'storage-core'
+    version  = '0.0-SNAPSHOT'
+}
+
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web',       version: springBootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa',  version: springBootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest', version: springBootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-devtools',          version: springBootVersion
+    compile group: 'mysql',                    name: 'mysql-connector-java',          version: mysqlConnectorVersion
+    compile group: 'log4j',                    name: 'log4j',                         version: log4jVersion
+    compile group: 'javax.xml.bind',           name: 'jaxb-api',                      version: axbApiVersion
+    compile group: 'org.threeten',             name: 'threetenbp',                    version: threetenbpVersion
+    compile group: 'io.jsonwebtoken',          name: 'jjwt',                          version: jsonwebtokenVersion
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion
+    testCompile group: 'junit',                    name: 'junit',                    version: jUnitVersion
+}
